@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jakim typem Doradcy Empik jesteś?</title>
+<style>
+:root{--red:#e30613;--ink:#151515;--mut:#5c5c5c;--bg:#f4f4f2;--line:#dedcd8;--acc:#e30613}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;line-height:1.5}
+.app{width:100%;max-width:720px;background:#fff;border-radius:28px;border-top:8px solid var(--ink);box-shadow:0 18px 50px rgba(0,0,0,.09);overflow:hidden}
+.top{display:flex;align-items:center;justify-content:space-between;padding:18px 28px 0;font-weight:800;font-size:15px}
+.top b{background:var(--red);color:#fff;padding:3px 10px;border-radius:8px;letter-spacing:.2px}
+.top span{color:var(--mut);font-weight:600;font-size:14px}
+.view{padding:26px 28px 32px;outline:none}
+.view.in{animation:in .45s cubic-bezier(.2,.8,.2,1)}
+.view.in.back{animation-name:inb}
+@keyframes in{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+@keyframes inb{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(32px,7vw,50px);line-height:1.05;margin:6px 0 14px;letter-spacing:-1.2px;font-weight:900}
+h2{font-size:clamp(21px,4.6vw,27px);line-height:1.25;margin:10px 0 22px;font-weight:800;letter-spacing:-.3px}
+.lead{font-size:18px;color:#333;margin:0 0 18px;max-width:560px}
+.info{display:inline-block;background:var(--bg);border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px;margin-bottom:26px}
+.chips{display:flex;gap:10px;margin:0 0 26px;font-size:30px}
+.chips i{font-style:normal;width:54px;height:54px;border-radius:16px;background:var(--bg);display:grid;place-items:center}
+.note{font-size:13px;color:var(--mut);margin:20px 0 0}
+.btn{min-height:48px;font:inherit;font-weight:800;font-size:17px;border:2px solid var(--ink);background:#fff;color:var(--ink);padding:14px 26px;border-radius:999px;cursor:pointer;transition:transform .15s,background .15s,color .15s}
+.btn:hover:not(:disabled){transform:translateY(-2px)}
+.btn.pri{background:var(--red);border-color:var(--red);color:#fff}
+.btn.pri:hover:not(:disabled){background:#b9000f;border-color:#b9000f}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.bar{height:10px;background:var(--bg);border-radius:99px;overflow:hidden;margin:4px 0 8px}
+.bar div{height:100%;background:var(--red);border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.cnt{font-size:14px;font-weight:700;color:var(--mut)}
+.opts{display:grid;gap:10px}
+.opt{-webkit-tap-highlight-color:transparent;overflow-wrap:anywhere;font:inherit;font-size:16.5px;text-align:left;display:flex;align-items:center;gap:14px;width:100%;min-height:60px;padding:14px 18px;background:#fff;color:var(--ink);border:2px solid var(--line);border-radius:18px;cursor:pointer;transition:border-color .15s,background .15s,transform .15s}
+.opt:hover{border-color:var(--ink);transform:translateX(3px)}
+.opt .dot{flex:none;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;color:#fff;font-size:15px;font-weight:900;transition:.15s}
+.opt.sel{border-color:var(--red);background:#fff1f2;font-weight:700}
+.opt.sel .dot{background:var(--red);border-color:var(--red)}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+.res{text-align:center;--t:#e30613}
+.res h2{margin:4px 0 16px}
+.card{background:var(--tint);border:2px solid var(--t);border-radius:24px;padding:26px 22px;margin-bottom:20px}
+.card .em{font-size:68px;line-height:1;display:block;animation:pop .7s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes pop{from{transform:scale(.3) rotate(-15deg);opacity:0}to{transform:none;opacity:1}}
+.card h3{font-size:clamp(28px,6.5vw,40px);margin:10px 0 8px;font-weight:900;letter-spacing:-.8px;line-height:1.1}
+.slo{font-size:18px;font-weight:700;color:var(--t);margin:0 0 14px}
+.pow{display:inline-block;background:var(--t);color:#fff;font-weight:800;padding:6px 16px;border-radius:999px;font-size:15px;margin-bottom:14px}
+.card p{margin:0 auto;font-size:17px;max-width:520px;text-align:left}
+.cta{background:var(--ink);color:#fff;border-radius:24px;padding:24px 22px;margin-bottom:24px;text-align:left;box-shadow:0 0 0 4px #fff,0 0 0 6px var(--red)}
+.cta strong{display:block;font-size:22px;margin-bottom:8px}
+.cta p{margin:0;font-size:17px;color:#f1f1f1}
+@media(max-width:560px){body{padding:10px}.top{padding:16px 18px 0}.view{padding:20px 18px 26px}.opt{padding:12px 14px}.btn{padding:13px 20px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="app">
+  <div class="top"><b>empik</b><span>Quiz dla Doradców</span></div>
+  <div id="root"></div>
+</main>
+<script>
+const TYPES={
+A:{e:"🔎",n:"Detektyw Potrzeb",s:"Nic nie umknie Twojej uwadze!",p:"Badanie potrzeb",c:"#2563eb",d:"Masz prawdziwy talent do odkrywania tego, co ważne! Łączysz fakty, zadajesz trafne pytania i potrafisz dostrzec potrzeby, które nie zawsze są oczywiste. Twoja uważność pomaga znajdować rozwiązania naprawdę dopasowane do Klienta."},
+B:{e:"💡",n:"Mistrz Inspiracji",s:"Pomysły? Masz ich całe mnóstwo!",p:"Kreatywność i rekomendacje",c:"#c26a00",d:"Twoja głowa jest pełna pomysłów! Potrafisz dostrzegać nieoczywiste możliwości, łączyć produkty z zainteresowaniami i zaskakiwać ciekawymi inspiracjami. Dzięki Tobie zwykłe poszukiwania mogą zamienić się w odkrywanie czegoś wyjątkowego."},
+C:{e:"💬",n:"Mistrz Relacji",s:"Twoją supermocą są ludzie!",p:"Komunikacja i budowanie relacji",c:"#d11a78",d:"Masz dar do ludzi! Potrafisz tworzyć przyjazną atmosferę, uważnie słuchać i sprawiać, że rozmowa przebiega naturalnie. Twoją największą siłą jest budowanie kontaktu, dzięki któremu Klienci czują się zauważeni i wysłuchani."},
+D:{e:"📋",n:"Strażnik Porządku",s:"Chaos nie ma z Tobą szans!",p:"Organizacja i sprawność działania",c:"#177a3c",d:"Organizacja to Twoje drugie imię! Lubisz mieć plan, dostrzegasz szczegóły i dbasz o to, żeby wszystko działało sprawnie. Dzięki Twojemu uporządkowanemu podejściu nawet wiele zadań jednocześnie nie musi oznaczać chaosu."},
+E:{e:"⚡",n:"Agent Zadań Specjalnych",s:"Wyzwania to Twój żywioł!",p:"Elastyczność i rozwiązywanie problemów",c:"#7c3aed",d:"Gdy pojawia się wyzwanie, Ty zaczynasz działać! Potrafisz szybko odnajdywać się w nowych sytuacjach, szukać rozwiązań i reagować na zmieniające się okoliczności. Twoja elastyczność jest prawdziwą supermocą."}
+};
+/* Odpowiedzi w kolejności A, B, C, D, E (typ przypisany do pozycji) */
+const Q=[
+["Wyobraź sobie, że Klient opowiedział Ci już, jakiego prezentu szuka. Co sprawia Ci największą frajdę w dalszej części rozmowy?",["Łączenie wszystkich informacji w całość, żeby jak najlepiej dopasować propozycję.","Wyszukiwanie ciekawych produktów, które mogą pozytywnie zaskoczyć Klienta.","Prowadzenie rozmowy w swobodnej, przyjaznej atmosferze.","Przejrzyste przedstawienie możliwości i najważniejszych informacji.","Znalezienie rozwiązania nawet wtedy, gdy oczekiwania Klienta są nietypowe."]],
+["W salonie zaczyna robić się większy ruch. Co przychodzi Ci wtedy najbardziej naturalnie?",["Ustalam, czego konkretnie potrzebują kolejni Klienci.","Podpowiadam produkty, które mogą ułatwić wybór.","Dbam o dobry kontakt i przyjazną atmosferę.","Organizuję działania tak, żeby wszystko przebiegało sprawnie.","Reaguję tam, gdzie akurat najbardziej potrzeba pomocy."]],
+["Który komplement od Klienta najbardziej by Cię ucieszył?",["„Dokładnie o to mi chodziło!”","„Sam nigdy bym na to nie wpadł!”","„Ale miło się z Panią/Panem rozmawiało!”","„Wszystko poszło bardzo sprawnie!”","„Uratował(a) mi Pan/Pani sytuację!”"]],
+["Masz chwilę na poznanie nowego produktu. Na co zwracasz uwagę?",["Dla kogo i w jakich sytuacjach będzie przydatny.","Co ciekawego można z nim połączyć.","Jak opowiedzieć o nim w prosty, przyjazny sposób.","Jakie ma najważniejsze parametry i gdzie go znaleźć.","Jak szybko wykorzystać go w konkretnej sytuacji."]],
+["Klient ma bardzo nietypową prośbę. Twoja pierwsza myśl?",["„Muszę dokładnie zrozumieć, o co chodzi”.","„Może znajdziemy coś nieoczywistego!”","„Spokojnie, porozmawiajmy”.","„Sprawdźmy dostępne możliwości krok po kroku”.","„Dobra, znajdziemy jakieś rozwiązanie!”"]],
+["Wyobraź sobie, że możesz przekazać innym Doradcom jedną ze swoich mocnych stron. Co wybierasz?",["Dostrzeganie szczegółów i zadawanie pytań, które pomagają lepiej zrozumieć potrzeby Klienta.","Wymyślanie kreatywnych rozwiązań i znajdowanie nieoczywistych inspiracji.","Łatwe nawiązywanie kontaktu i tworzenie przyjaznej atmosfery.","Dobrą organizację pracy i pilnowanie, żeby wszystko było dopięte na ostatni guzik.","Zachowanie elastyczności i szybkie reagowanie na niespodziewane sytuacje."]],
+["Co sprawia Ci największą satysfakcję w codziennej pracy?",["Moment, w którym odkrywam prawdziwą potrzebę Klienta.","Możliwość dzielenia się pomysłami i odkrywania nowości.","Rozmowy i kontakt z ludźmi.","Satysfakcja, kiedy wszystko działa tak, jak powinno.","Różnorodność zadań i nowe wyzwania."]],
+["Wybierz hasło, które najlepiej do Ciebie pasuje.",["„Najpierw poznajmy potrzeby!”","„Mam na to pomysł!”","„Porozmawiajmy!”","„Dobry plan to podstawa!”","„Nie ma rzeczy niemożliwych!”"]]
+];
+const TIE_Q="Które z poniższych określeń najlepiej do Ciebie pasuje?";
+const TIE_A={A:"„Mam oko do szczegółów i potrafię dotrzeć do sedna”.",B:"„Pomysły i inspiracje to mój żywioł”.",C:"„Z ludźmi zawsze znajdę wspólny język”.",D:"„Lubię, kiedy wszystko jest dobrze zorganizowane”.",E:"„Nie ma dla mnie sytuacji bez rozwiązania”."};
+const N=Q.length, LETTERS="ABCDE";
+const root=document.getElementById("root");
+let s=null;
+
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function reset(){s={i:-1,ans:[],order:Q.map(()=>shuffle(LETTERS.split(""))),tie:null,tieSet:"",tieOrder:[]}}
+function tops(){
+  const c={A:0,B:0,C:0,D:0,E:0};
+  s.ans.forEach(t=>{if(t)c[t]++});
+  const m=Math.max(...Object.values(c));
+  return LETTERS.split("").filter(k=>c[k]===m);
+}
+function chosen(){return s.i<N?s.ans[s.i]:s.tie}
+function select(t){if(s.i<N)s.ans[s.i]=t;else if(s.i===N)s.tie=t;else return;render(false)}
+function go(step){
+  if(!s||s.i<0||s.i>N)return;          /* poza pytaniami: nic do zrobienia */
+  if(step<0){                          /* WSTECZ */
+    if(s.i>0){s.i--;render(true,true)}
+    return;
+  }
+  if(!chosen())return;                 /* nie można pominąć pytania */
+  if(s.i===N){                         /* pytanie dodatkowe -> zawsze wynik */
+    s.i=N+1;
+  }else if(s.i===N-1){                 /* po 8. pytaniu */
+    const t=tops();
+    if(t.length>1){                    /* remis -> pytanie dodatkowe */
+      const key=t.join("");
+      if(s.tieSet!==key){s.tieSet=key;s.tieOrder=shuffle(t);s.tie=null}  /* inna grupa remisu: stara odpowiedź nieważna */
+      s.i=N;
+    }else{                             /* brak remisu -> wynik */
+      s.tieSet="";s.tie=null;s.tieOrder=[];
+      s.i=N+1;
+    }
+  }else s.i++;                         /* kolejne pytanie 1-8 */
+  render(true,false);
+}
+function finalType(){const t=tops();return(t.length>1&&t.includes(s.tie))?s.tie:t[0]}
+
+function render(anim,back){
+  let h="";
+  const cls="view"+(anim?" in":"")+(back?" back":"");
+  if(s.i===-1){
+    h=`<div class="${cls}" tabindex="-1" id="v">
+      <h1>Jakim typem Doradcy Empik jesteś?</h1>
+      <p class="lead">8 pytań, 5 typów Doradców i jedna wyjątkowa supermoc. Sprawdź, co wyróżnia Cię w salonie!</p>
+      <div class="info">8 pytań • około 2 minuty • 5 możliwych wyników</div>
+      <div class="chips" aria-hidden="true">${LETTERS.split("").map(k=>`<i>${TYPES[k].e}</i>`).join("")}</div>
+      <button class="btn pri" id="go">Odkryj swoją supermoc!</button>
+      <p class="note">To quiz dla zabawy, a nie test wiedzy ani ocena kompetencji. Wszystkie typy są równie wartościowe.</p>
+    </div>`;
+  }else if(s.i<=N){
+    const tie=s.i===N;
+    const q=tie?TIE_Q:Q[s.i][0];
+    const keys=tie?s.tieOrder:s.order[s.i];
+    const cur=chosen();
+    const txt=k=>tie?TIE_A[k]:Q[s.i][1][LETTERS.indexOf(k)];
+    const pct=Math.round((s.i+1)/N*100);
+    h=`<div class="view${anim?" in"+(back?" back":""):""}" id="v" tabindex="-1">
+      <div class="cnt" id="cnt">${tie?"Pytanie dodatkowe":`Pytanie ${s.i+1} z ${N}`}</div>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><div style="width:${pct}%"></div></div>
+      <h2>${q}</h2>
+      <div class="opts" role="radiogroup" aria-label="Odpowiedzi">
+        ${keys.map((k,n)=>`<button class="opt${cur===k?" sel":""}" role="radio" aria-checked="${cur===k}" data-k="${k}"><span class="dot">${cur===k?"✓":""}</span><span>${txt(k)}</span></button>`).join("")}
+      </div>
+      <div class="nav">
+        <button class="btn" id="prev"${s.i===0?" disabled":""}>Wstecz</button>
+        <button class="btn pri" id="next"${cur?"":" disabled"}>${s.i===N-1||tie?"Zobacz wynik":"Dalej"}</button>
+      </div>
+    </div>`;
+  }else{
+    const k=finalType(),t=TYPES[k];
+    h=`<div class="view res${anim?" in":""}" id="v" tabindex="-1" style="--t:${t.c};--tint:${t.c}14">
+      <h2>Twoja supermoc została odkryta!</h2>
+      <div class="card">
+        <span class="em" aria-hidden="true">${t.e}</span>
+        <h3>${t.n}</h3>
+        <div class="slo">${t.s}</div>
+        <span class="pow">Supermoc: ${t.p}</span>
+        <p>${t.d}</p>
+      </div>
+      <div class="cta">
+        <strong>🎉 Twoja supermoc odkryta!</strong>
+        <p>Wróć do posta w Empik Edu i pochwal się w komentarzu, jakim typem Doradcy jesteś. Czekamy na Twój wynik!</p>
+      </div>
+      <button class="btn pri" id="again">Rozwiąż quiz ponownie</button>
+    </div>`;
+  }
+  root.innerHTML=h;
+  const $=id=>document.getElementById(id);
+  if($("go"))$("go").onclick=()=>{reset();s.i=0;render(true)};
+  if($("prev"))$("prev").onclick=()=>go(-1);
+  if($("next"))$("next").onclick=()=>go(1);
+  if($("again"))$("again").onclick=()=>{reset();render(true)};
+  root.querySelectorAll(".opt").forEach(b=>b.onclick=()=>select(b.dataset.k));
+  if(anim){const v=$("v");if(v)v.focus({preventScroll:true});window.scrollTo(0,0)}
+  else{const o=root.querySelector(".opt.sel");if(o)o.focus({preventScroll:true})}
+}
+document.addEventListener("keydown",e=>{
+  if(!s||s.i<0||s.i>N)return;
+  const n=parseInt(e.key,10);
+  if(n>=1&&n<=5){const b=root.querySelectorAll(".opt")[n-1];if(b)b.click()}
+});
+reset();render(true);
+</script>
+</body>
+</html>
